@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Pear Tree — Thagaste, around 370</title>
+  <meta name="description" content="A night in Thagaste: Augustine and his friends shake a neighbor's pear tree, not from hunger but for the thrill of the forbidden.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="scene" aria-label="Night orchard in Thagaste: boys at a pear tree, moonlight, pigs at the edge"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <aside class="copy">
+    <p class="kicker">Confessions · Book II</p>
+    <h1>The Pear Tree</h1>
+    <p class="sub">Thagaste, around 370 · Confessions II</p>
+    <span class="rule" aria-hidden="true"></span>
+    <blockquote>
+      <p>I loved the evil in me</p>
+      <p>Alone I would not have done it</p>
+    </blockquote>
+    <p class="caption">
+      Sixteen-year-old Augustine and a pack of friends crept to a neighbor’s pear tree after dark. They shook down far more fruit than they could carry or want. No one was hungry. They stole for the pleasure of the theft itself, then flung the pears to pigs at the orchard edge.
+    </p>
+    <p class="note">They had better pears at home. Most of the stolen fruit went to the pigs.</p>
+  </aside>
+
+  <div class="stills" aria-label="Cinematic stills of the incident">
+    <button type="button" class="still" data-src="night.jpg" data-caption="The orchard · Thagaste, night">
+      <img src="night.jpg" alt="Wide night orchard: boys at the pear tree under the moon, pigs at the wall">
+      <span>Orchard</span>
+    </button>
+    <button type="button" class="still" data-src="close.jpg" data-caption="Augustine with the sack">
+      <img src="close.jpg" alt="Close on Augustine holding a sack of stolen pears">
+      <span>The sack</span>
+    </button>
+  </div>
+
+  <div class="lightbox" hidden>
+    <button type="button" class="lightbox-close" aria-label="Close still">&times;</button>
+    <figure>
+      <img src="" alt="">
+      <figcaption></figcaption>
+    </figure>
+  </div>
+
+  <script src="scene.js"></script>
+</body>
+</html>
