@@ -1,0 +1,379 @@
+:root {
+  --night: #07060e;
+  --gold: #c9a227;
+  --linen: #d8cbb4;
+  --silver: #c8ccd4;
+  --muted: #8a8496;
+  --ember: #d4893a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--night);
+  color: var(--linen);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  position: relative;
+  cursor: crosshair;
+}
+
+#scene {
+  display: block;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 75% 70% at 58% 42%, transparent 40%, rgba(7, 6, 14, 0.45) 100%),
+    linear-gradient(90deg, rgba(7, 6, 14, 0.55) 0%, transparent 28%, transparent 78%, rgba(7, 6, 14, 0.28) 100%);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.88  0 0 0 0 0.8  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+}
+
+.copy {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(26.5rem, 34vw);
+  padding: max(5.5vh, 2.4rem) 2.4rem max(6vh, 2rem) max(2.6rem, env(safe-area-inset-left));
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 6, 14, 0.62) 0%,
+    rgba(7, 6, 14, 0.28) 62%,
+    transparent 100%
+  );
+}
+
+.kicker {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+  opacity: 0.9;
+}
+
+h1 {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 5.4vw, 4.85rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: #f3eee6;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.sub {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 0.85rem;
+}
+
+.rule {
+  display: block;
+  width: 2.4rem;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.45rem 0 1.25rem;
+  opacity: 0.85;
+}
+
+blockquote {
+  border: 0;
+}
+
+blockquote p {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.28;
+  color: var(--linen);
+}
+
+blockquote p + p {
+  margin-top: 0.2rem;
+  color: #b7aa90;
+}
+
+.caption {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 300;
+  font-size: 0.84rem;
+  line-height: 1.62;
+  color: var(--silver);
+  margin-top: 1.5rem;
+  max-width: 22rem;
+}
+
+.note {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  margin-top: 1.15rem;
+  max-width: 20rem;
+  padding-left: 0.7rem;
+  border-left: 1px solid rgba(201, 162, 39, 0.45);
+}
+
+.stills {
+  position: fixed;
+  z-index: 5;
+  right: max(1.15rem, env(safe-area-inset-right));
+  bottom: max(1.15rem, env(safe-area-inset-bottom));
+  display: flex;
+  gap: 0.55rem;
+  pointer-events: auto;
+}
+
+.still {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(201, 162, 39, 0.38);
+  background: #0c0b14;
+  padding: 0;
+  width: 7.35rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.48);
+  transition: transform 0.28s ease, border-color 0.28s ease;
+  text-align: left;
+}
+
+.still:hover,
+.still:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  outline: none;
+}
+
+.still img {
+  display: block;
+  width: 100%;
+  height: 4.55rem;
+  object-fit: cover;
+  filter: saturate(0.88) brightness(0.9);
+  pointer-events: none;
+}
+
+.still span {
+  display: block;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--linen);
+  padding: 0.34rem 0.45rem 0.4rem;
+  background: rgba(7, 6, 14, 0.94);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(7, 6, 14, 0.84);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 6vw;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox figure {
+  max-width: min(960px, 92vw);
+  max-height: 88vh;
+  cursor: default;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  display: block;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+.lightbox figcaption {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--linen);
+  margin-top: 0.75rem;
+  font-size: 1.08rem;
+  letter-spacing: 0.02em;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.05rem;
+  right: 1.25rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(7, 6, 14, 0.7);
+  color: var(--linen);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+  border-color: var(--gold);
+  color: #fff;
+  outline: none;
+}
+
+@media (max-width: 780px) {
+  .copy {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    max-height: 52vh;
+    justify-content: flex-end;
+    padding: 5.5rem 1.35rem max(1.4rem, env(safe-area-inset-bottom)) 1.35rem;
+    background: linear-gradient(
+      0deg,
+      rgba(7, 6, 14, 0.94) 0%,
+      rgba(7, 6, 14, 0.78) 48%,
+      rgba(7, 6, 14, 0.2) 82%,
+      transparent 100%
+    );
+  }
+
+  h1 {
+    font-size: 2.35rem;
+  }
+
+  .caption {
+    font-size: 0.78rem;
+    max-width: none;
+    margin-top: 1rem;
+  }
+
+  .note {
+    margin-top: 0.8rem;
+    max-width: none;
+  }
+
+  blockquote p {
+    font-size: 1.12rem;
+  }
+
+  .kicker {
+    margin-bottom: 0.55rem;
+  }
+
+  .rule {
+    margin: 0.9rem 0 0.85rem;
+  }
+
+  .stills {
+    bottom: auto;
+    top: max(0.7rem, env(safe-area-inset-top));
+    right: 0.7rem;
+  }
+
+  .still {
+    width: 5.15rem;
+  }
+
+  .still img {
+    height: 3.15rem;
+  }
+
+  .still span {
+    font-size: 0.5rem;
+    padding: 0.22rem 0.3rem 0.28rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .copy {
+    width: min(22rem, 38vw);
+    padding: 1.2rem 1.2rem 1.2rem 1.5rem;
+    background: linear-gradient(90deg, rgba(7, 6, 14, 0.72) 0%, transparent 100%);
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .caption,
+  .note {
+    display: none;
+  }
+
+  .stills {
+    bottom: 0.6rem;
+    top: auto;
+  }
+
+  .still {
+    width: 4.6rem;
+  }
+
+  .still img {
+    height: 2.7rem;
+  }
+}
